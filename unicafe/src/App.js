@@ -15,14 +15,19 @@ export default function App() {
       <button onClick={() => setGood(good + 1)}>good</button>
       <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
       <button onClick={() => setBad(bad + 1)}>bad</button>
-      <Statistics
-        good={good}
-        neutral={neutral}
-        bad={bad}
-        sum={all}
-        average={average}
-        positive={positive}
-      />
+
+      {all != 0 ? (
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          sum={all}
+          average={average}
+          positive={positive}
+        />
+      ) : (
+        "No feedback given"
+      )}
     </div>
   );
 }
