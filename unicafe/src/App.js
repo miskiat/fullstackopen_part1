@@ -16,8 +16,7 @@ export default function App() {
       <button onClick={() => setNeutral(neutral + 1)}>neutral</button>
       <button onClick={() => setBad(bad + 1)}>bad</button>
       <h1>statistics</h1>
-
-      {all != 0 ? (
+      {all ? (
         <Statistics
           good={good}
           neutral={neutral}
@@ -29,6 +28,7 @@ export default function App() {
       ) : (
         "No feedback given"
       )}
+      ; ;
     </div>
   );
 }

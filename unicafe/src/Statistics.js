@@ -1,6 +1,8 @@
 import StatisticLine from "./Statistics";
+
 const Statistics = (props) => {
-  const { good, bad, neutral, sum, average, positive } = props;
+  const { good, neutral, bad, sum, average, positive } = props;
+
   return (
     <div>
       <p>good {props.good}</p>
