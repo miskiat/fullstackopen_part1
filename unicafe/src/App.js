@@ -9,12 +9,13 @@ const App = () => {
     "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
     "Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.",
   ];
-  const score = new Array().fill(0);
+  const score = new Array(7).fill(0);
   const [selected, setSelected] = useState(0);
-  const [vote, setVote] = useState([0, 0, 0, 0, 0, 0, 0]);
-  const generateRandom = () => {
-    let random = Math.floor(Math.random() * anecdotes.length);
-    setSelected(random);
+  const [vote, setVote] = useState(score);
+  const highestVote = Math.max(...vote);
+  const highestVoteIndex = vote.indexOf(highestVote);
+  const randomAnecdotes = () => {
+    setSelected(Math.floor(Math.random() * anecdotes.length));
   };
   const handleVote = () => {
     const points = [...vote];
@@ -22,12 +23,21 @@ const App = () => {
     setVote(points);
   };
 
+  const highestAnecdotes = anecdotes.filter(
+    (anecdote, aIndex) => vote[aIndex] === highestVote
+  );
+  console.log(highestAnecdotes);
+
   return (
     <div>
+      <h2>Anecdotes of the day</h2>
       <p>{anecdotes[selected]}</p>
-      <p>has {vote[selected]} vote</p>
+      <p>has {vote[selected]} votes</p>
       <button onClick={handleVote}>vote</button>
-      <button onClick={generateRandom}>next anecdote</button>
+      <button onClick={randomAnecdotes}>next anecdotes</button>
+      <h3>Anecdotes with most votes</h3>
+      <p>{anecdotes[highestVoteIndex]}</p>
+      <p>has {vote[selected]}votes</p>
     </div>
   );
 };
